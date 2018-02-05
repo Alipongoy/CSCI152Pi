@@ -3,27 +3,35 @@
 import RPi.GPIO as GPIO
 import time
 
-TRIG = 11
-ECHO = 12
+#TRIG = 11
+#ECHO = 12
+#TRIG2 = 15
+#ECHO2 = 16
+objectArray = [[11,12], [15,16], ]
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(TRIG, GPIO.OUT)
-	GPIO.setup(ECHO, GPIO.IN)
+	for keyPair in objectArray:
+		GPIO.setup(keyPair[0], GPIO.OUT)
+		GPIO.setup(keyPair[1], GPIO.IN)
+	#GPIO.setup(TRIG, GPIO.OUT)
+	#GPIO.setup(ECHO, GPIO.IN)
+	#GPIO.setup(TRIG2, GPIO.OUT)
+	#GPIO.setup(ECHO2, GPIO.IN)
 
-def distance():
-	GPIO.output(TRIG, 0)
+def distance(trignum, echonum):
+	GPIO.output(trignum, 0)
 	time.sleep(0.000002)
 
-	GPIO.output(TRIG, 1)
+	GPIO.output(trignum, 1)
 	time.sleep(0.00001)
 	GPIO.output(TRIG, 0)
 
 	
-	while GPIO.input(ECHO) == 0:
+	while GPIO.input(echonum) == 0:
 		a = 0
 	time1 = time.time()
-	while GPIO.input(ECHO) == 1:
+	while GPIO.input(echonum) == 1:
 		a = 1
 	time2 = time.time()
 
@@ -32,10 +40,17 @@ def distance():
 
 def loop():
 	while True:
-		dis = distance() * .01
-		print format(dis, '.3f') , 'm'
+		sensornum = 1
+		for keyPair in objectArray:
+			dis = distance(keyPair[0],keyPair[1]) * .01
+			print 'Distance ', sensornum, ': ', format(dis, '.3f') , 'm'
+			sensornum +=1
+		#dis2 = distance(TRIG2,ECHO2) * .01
+		#print 'Distance 1: ', format(dis1, '.3f') , 'm'
+		#print ''
+		#print 'Distance 2: ', format(dis2, '.3f') , 'm'
 		print ''
-		time.sleep(0.3)
+		time.sleep(1)
 
 def destroy():
 	GPIO.cleanup()
