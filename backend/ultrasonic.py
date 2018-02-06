@@ -7,25 +7,30 @@ import time
 #ECHO = 12
 #TRIG2 = 15
 #ECHO2 = 16
-objectArray = [[11,12], [15,16], ]
+keyArray = [{'trigNumber': 11, 'echoNumber':12, 'description':'front sensor'}, {'trigNumber': 15, 'echoNumber':16, 'description':'back sensor'}]
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)
-	for keyPair in objectArray:
-		GPIO.setup(keyPair[0], GPIO.OUT)
-		GPIO.setup(keyPair[1], GPIO.IN)
-	#GPIO.setup(TRIG, GPIO.OUT)
-	#GPIO.setup(ECHO, GPIO.IN)
-	#GPIO.setup(TRIG2, GPIO.OUT)
-	#GPIO.setup(ECHO2, GPIO.IN)
+	# This sets up the GPIO in and out pins. Using a for in loop
+	for dictionaryObject in keyArray:
+		# Sets up each trigNumber to GPIO.OUT
+		GPIO.setup(dictionaryObject['trigNumber'], GPIO.OUT)
+		# Sets up each echoNumber to GPIO.IN
+		GPIO.setup(dictionaryObject['echoNumber'], GPIO.IN)
 
-def distance(trignum, echonum):
+def distanceInMeters(trignum, echonum):
+""" 
+Calculates the distance of an ultrasonic sensor to an object.
+@param {Integer} [trignum] The trigger number of the sensor.
+@param {Integer} [echonum] The echo number of the sensor.
+@return {Integer} [during] The distance of the sensor to object in centimeters.
+"""
 	GPIO.output(trignum, 0)
 	time.sleep(0.000002)
 
 	GPIO.output(trignum, 1)
 	time.sleep(0.00001)
-	GPIO.output(TRIG, 0)
+	GPIO.output(trignum, 0)
 
 	
 	while GPIO.input(echonum) == 0:
@@ -36,19 +41,15 @@ def distance(trignum, echonum):
 	time2 = time.time()
 
 	during = time2 - time1
-	return during * 340 / 2 * 100
+	# Formats to meters
+	return during * 340 / 2
 
 def loop():
 	while True:
-		sensornum = 1
-		for keyPair in objectArray:
-			dis = distance(keyPair[0],keyPair[1]) * .01
-			print 'Distance ', sensornum, ': ', format(dis, '.3f') , 'm'
-			sensornum +=1
-		#dis2 = distance(TRIG2,ECHO2) * .01
-		#print 'Distance 1: ', format(dis1, '.3f') , 'm'
-		#print ''
-		#print 'Distance 2: ', format(dis2, '.3f') , 'm'
+		for dictionaryObject in keyArray:
+			#Calculates the distance
+			dis = distanceInMeters(dictionaryObject['trigNumber'], dictionaryObject['echoNumber'])
+			print 'Distance for ', dictionaryObject['description'], ': ', format(dis, '.3f') , 'm'
 		print ''
 		time.sleep(1)
 
