@@ -23,7 +23,7 @@ def distanceInMeters(trignum, echonum):
 Calculates the distance of an ultrasonic sensor to an object.
 @param {Integer} [trignum] The trigger number of the sensor.
 @param {Integer} [echonum] The echo number of the sensor.
-@return {Integer} [during] The distance of the sensor to object in centimeters.
+@return {Integer} [during] The distance of the sensor to object in distance.
 """
 	GPIO.output(trignum, 0)
 	time.sleep(0.000002)
@@ -41,15 +41,15 @@ Calculates the distance of an ultrasonic sensor to an object.
 	time2 = time.time()
 
 	during = time2 - time1
-	# Formats to meters
-	return during * 340 / 2
+	distance = during * 340 / 2
+	return distance
 
 def loop():
 	while True:
 		for dictionaryObject in keyArray:
 			#Calculates the distance
-			dis = distanceInMeters(dictionaryObject['trigNumber'], dictionaryObject['echoNumber'])
-			print 'Distance for ', dictionaryObject['description'], ': ', format(dis, '.3f') , 'm'
+			distance = distanceInMeters(dictionaryObject['trigNumber'], dictionaryObject['echoNumber'])
+			print 'Distance for ', dictionaryObject['description'], ': ', format(distance, '.3f') , 'm'
 		print ''
 		time.sleep(1)
 
