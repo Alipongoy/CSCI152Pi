@@ -9,6 +9,22 @@ import time
 #ECHO2 = 16
 keyArray = [{'trigNumber': 11, 'echoNumber':12, 'description':'front sensor'}, {'trigNumber': 15, 'echoNumber':16, 'description':'back sensor'}]
 
+#dic1 = {'trigNumber': 11, 'echoNumber':12, 'description':'front sensor'}
+#dic2 = {'trignumber': 15, 'echonumber':16, 'description':'back sensor'}
+#
+#dic1["trigNumber"]
+#11
+#
+#dic1["echoNumber"]
+#12
+#
+#dic1["description"]
+#front sensor
+
+
+
+
+
 def setup():
 	GPIO.setmode(GPIO.BOARD)
 	# This sets up the GPIO in and out pins. Using a for in loop
@@ -19,11 +35,11 @@ def setup():
 		GPIO.setup(dictionaryObject['echoNumber'], GPIO.IN)
 
 def distanceInMeters(trignum, echonum):
-""" 
+"""
 Calculates the distance of an ultrasonic sensor to an object.
 @param {Integer} [trignum] The trigger number of the sensor.
 @param {Integer} [echonum] The echo number of the sensor.
-@return {Integer} [during] The distance of the sensor to object in distance.
+@return {Float} [during] The distance of the sensor to object in distance.
 """
 	GPIO.output(trignum, 0)
 	time.sleep(0.000002)
@@ -32,7 +48,7 @@ Calculates the distance of an ultrasonic sensor to an object.
 	time.sleep(0.00001)
 	GPIO.output(trignum, 0)
 
-	
+
 	while GPIO.input(echonum) == 0:
 		a = 0
 	time1 = time.time()
@@ -51,6 +67,7 @@ def loop():
 			distance = distanceInMeters(dictionaryObject['trigNumber'], dictionaryObject['echoNumber'])
 			print 'Distance for ', dictionaryObject['description'], ': ', format(distance, '.3f') , 'm'
 		print ''
+                # Number of times output is displayed to screen
 		time.sleep(1)
 
 def destroy():
