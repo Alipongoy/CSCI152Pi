@@ -7,7 +7,7 @@ import time
 #ECHO = 12
 #TRIG2 = 15
 #ECHO2 = 16
-keyArray = [{'trigNumber': 11, 'echoNumber':12, 'description':'front sensor'}, {'trigNumber': 15, 'echoNumber':16, 'description':'back sensor'}]
+keyArray = [{'trigNumber': 16, 'echoNumber':18, 'description':'front sensor'}, {'trigNumber': 29, 'echoNumber':31, 'description':'back sensor'}, {'trigNumber': 13, 'echoNumber': 17, 'description':'light sensor'}]
 
 #dic1 = {'trigNumber': 11, 'echoNumber':12, 'description':'front sensor'}
 #dic2 = {'trignumber': 15, 'echonumber':16, 'description':'back sensor'}
@@ -33,6 +33,28 @@ def setup():
 		GPIO.setup(dictionaryObject['trigNumber'], GPIO.OUT)
 		# Sets up each echoNumber to GPIO.IN
 		GPIO.setup(dictionaryObject['echoNumber'], GPIO.IN)
+
+#def displayLED(trignum):
+#    GPIO.output(trignum,1)
+#
+#def hideLED(trignum):
+#    GPIO.output(trignum,0)
+
+def toggleLED(trignum, isTaken):
+    if isTaken:
+        GPIO.output(trignum,1)
+    else:
+        GPIO.output(trignum,0)
+
+
+
+def isSpotTaken():
+    frontDistance = distanceInMeters(keyArray[0].trigNumber, keyArray[0].echoNumber)
+    backDistance = distanceInMeters(keyArray[1].trigNumber, keyArray[1].echoNumber)
+    return (frontDistance < 1 and backDistance < 1)
+
+
+
 
 def distanceInMeters(trignum, echonum):
 """
@@ -63,11 +85,15 @@ Calculates the distance of an ultrasonic sensor to an object.
 def loop():
 	while True:
 		for dictionaryObject in keyArray:
+                    if (dictionaryObject.description != 'light sensor'):
 			#Calculates the distance
 			distance = distanceInMeters(dictionaryObject['trigNumber'], dictionaryObject['echoNumber'])
 			print 'Distance for ', dictionaryObject['description'], ': ', format(distance, '.3f') , 'm'
 		print ''
+
                 # Number of times output is displayed to screen
+                # Shows LED if spot is taken
+                toggleLED(13, isSpotTaken())
 		time.sleep(1)
 
 def destroy():
