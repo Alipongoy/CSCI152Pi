@@ -7,7 +7,7 @@ import time
 #ECHO = 12
 #TRIG2 = 15
 #ECHO2 = 16
-keyArray = [{'trigNumber': 16, 'echoNumber':18, 'description':'front sensor'}, {'trigNumber': 29, 'echoNumber':31, 'description':'back sensor'}, {'trigNumber': 13, 'echoNumber': 17, 'description':'light sensor'}]
+keyArray = [{'trigNumber': 16, 'echoNumber':18, 'description':'front sensor'}, {'trigNumber': 31, 'echoNumber':29, 'description':'back sensor'}, {'trigNumber': 13, 'echoNumber':'NA', 'description':'light sensor'}]
 
 #dic1 = {'trigNumber': 11, 'echoNumber':12, 'description':'front sensor'}
 #dic2 = {'trignumber': 15, 'echonumber':16, 'description':'back sensor'}
@@ -27,11 +27,12 @@ keyArray = [{'trigNumber': 16, 'echoNumber':18, 'description':'front sensor'}, {
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
-        # This sets up the GPIO in and out pins. Using a for in loop
-        for dictionaryObject in keyArray:
-            # Sets up each trigNumber to GPIO.OUT
-            GPIO.setup(dictionaryObject['trigNumber'], GPIO.OUT)
-            # Sets up each echoNumber to GPIO.IN
+    # This sets up the GPIO in and out pins. Using a for in loop
+    for dictionaryObject in keyArray:
+        # Sets up each trigNumber to GPIO.OUT
+        GPIO.setup(dictionaryObject['trigNumber'], GPIO.OUT)
+        # Sets up each echoNumber to GPIO.IN
+        if (dictionaryObject['echoNumber'] != "NA"):
             GPIO.setup(dictionaryObject['echoNumber'], GPIO.IN)
 
 #def displayLED(trignum):
@@ -56,39 +57,45 @@ def isSpotTaken():
 
 
 
-def distanceInMeters(trignum, echonum):
-    """
+"""
 Calculates the distance of an ultrasonic sensor to an object.
 @param {Integer} [trignum] The trigger number of the sensor.
 @param {Integer} [echonum] The echo number of the sensor.
 @return {Float} [during] The distance of the sensor to object in distance.
 """
-        GPIO.output(trignum, 0)
-        time.sleep(0.000002)
+def distanceInMeters(trignum, echonum):
+    GPIO.output(trignum, 0)
+    time.sleep(0.000002)
 
-        GPIO.output(trignum, 1)
-        time.sleep(0.00001)
-        GPIO.output(trignum, 0)
+    GPIO.output(trignum, 1)
+    time.sleep(0.00001)
+    GPIO.output(trignum, 0)
 
 
-        while GPIO.input(echonum) == 0:
-            a = 0
-        time1 = time.time()
-        while GPIO.input(echonum) == 1:
-            a = 1
-        time2 = time.time()
+    while GPIO.input(echonum) == 0:
+        a = 0
+    time1 = time.time()
+    while GPIO.input(echonum) == 1:
+        a = 1
+    time2 = time.time()
 
-        during = time2 - time1
-        distance = during * 340 / 2
-        return distance
+    during = time2 - time1
+    distance = during * 340 / 2
+    return distance
 
 def loop():
     while True:
         for dictionaryObject in keyArray:
-            if (dictionaryObject.description != 'light sensor'):
+            print "This is the disc object: ", dictionaryObject
+            print "This is the disc object des: ", dictionaryObject["description"]
+            if (dictionaryObject["description"] != 'light sensor'):
                 #Calculates the distance
+                        print "YYY"
                         distance = distanceInMeters(dictionaryObject['trigNumber'], dictionaryObject['echoNumber'])
+                        print "ZZZ"
                         print 'Distance for ', dictionaryObject['description'], ': ', format(distance, '.3f') , 'm'
+            else:
+                print "Not in if loop"
         print ''
 
         # Number of times output is displayed to screen
@@ -101,7 +108,7 @@ def destroy():
 
 if __name__ == "__main__":
     setup()
-        try:
-            loop()
-        except KeyboardInterrupt:
-            destroy()
+    try:
+        loop()
+    except KeyboardInterrupt:
+        destroy()
