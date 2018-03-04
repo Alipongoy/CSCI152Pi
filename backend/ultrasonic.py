@@ -48,10 +48,15 @@ def toggleLED(trignum, isTaken):
         GPIO.output(trignum,0)
 
 
-
+"""
+determine is spot is taken
+taken when frontDistant & back distance are < 1
+"""
 def isSpotTaken():
-    frontDistance = distanceInMeters(keyArray[0].trigNumber, keyArray[0].echoNumber)
-    backDistance = distanceInMeters(keyArray[1].trigNumber, keyArray[1].echoNumber)
+    print 'In taken first'
+    frontDistance = distanceInMeters(keyArray[0]['trigNumber'], keyArray[0]['echoNumber'])
+    print 'In taken second'
+    backDistance = distanceInMeters(keyArray[1]['trigNumber'], keyArray[1]['echoNumber'])
     return (frontDistance < 1 and backDistance < 1)
 
 
@@ -85,6 +90,8 @@ def distanceInMeters(trignum, echonum):
 
 def loop():
     while True:
+	print keyArray[0]
+	print keyArray[0]['trigNumber']
         for dictionaryObject in keyArray:
             print "This is the disc object: ", dictionaryObject
             print "This is the disc object des: ", dictionaryObject["description"]
@@ -93,7 +100,7 @@ def loop():
                         print "YYY"
                         distance = distanceInMeters(dictionaryObject['trigNumber'], dictionaryObject['echoNumber'])
                         print "ZZZ"
-                        print 'Distance for ', dictionaryObject['description'], ': ', format(distance, '.3f') , 'm'
+                        print 'Distance for ', dictionaryObject['description'], ': ', format(distance, '.3f'), 'm'
             else:
                 print "Not in if loop"
         print ''
