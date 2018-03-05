@@ -25,7 +25,6 @@ function initMap() {
 	var markers = points.map(function(location, i) {
 		var point = points[i];
 		var marker =  new google.maps.Marker({
-			//map: map,
 			position: new google.maps.LatLng(point.lat, point.lng),
 			title: point.title,
 			html: point.description,
@@ -33,11 +32,9 @@ function initMap() {
 			//icon: image,
 			title: point.name,
 			label: point.id //change to number of availible parking spots
-			//dist: point.dist,
-			//label: labels[i % labels.length]
 		});
 		google.maps.event.addListener(marker, 'click', function(){
-			//change this to zoom into the parking spaces
+			//add changing the zoom into the spaces
 			this.setVisible(!viewLot(this.title));
 		});
 		return marker;
@@ -76,9 +73,11 @@ function loadLots () {
 			lat -= latDiff;
 		}
 	}
+	//overwrite the framework lot with the full lot
 	lotQ = tempLot;
 }
 loadLots();
+//add all of the lots to this
 var lots = {"Lot Q":lotQ};
 
 function viewLot(lot) {
@@ -92,7 +91,6 @@ function viewLot(lot) {
 			var row = lotQ[i];
 			var marker =  new google.maps.Marker({
 				position: new google.maps.LatLng(row.lat, row.lng),
-				//animation: google.maps.Animation.DROP,
 				//icon: parkicon,
 				visible: row.isOpen, 
 			});
