@@ -1,4 +1,5 @@
 //$(document).foundation()
+var testData = {"lot":"lotQ","genID":"1-1","space":2,"isOpen":true}
 var test;
 var map;
 
@@ -20,7 +21,6 @@ function initMap() {
 		origin: new google.maps.Point(0, 0),
 		anchor: new google.maps.Point(0, 32)
 	}
-	infoWindow = new google.maps.InfoWindow();
 
 	var markers = points.map(function(location, i) {
 		var point = points[i];
@@ -91,8 +91,9 @@ function viewLot(lot) {
 			var row = lotQ[i];
 			var marker =  new google.maps.Marker({
 				position: new google.maps.LatLng(row.lat, row.lng),
-				//icon: parkicon,
+				icon: parkicon,
 				visible: row.isOpen, 
+				label: i,
 			});
 			return marker;
 		});
