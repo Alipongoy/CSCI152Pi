@@ -94,4 +94,3 @@ if mean ==  0:
 img3 = cv2.resize(img3, (760, 520))
 cv2.imshow('image',img3)
 cv2.waitKey(0)
-
