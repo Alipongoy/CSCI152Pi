@@ -113,4 +113,3 @@ img6 = cv2.resize(img6, (760, 520))
 cv2.imshow('image',img6)
 '''
 cv2.waitKey(0)
-
