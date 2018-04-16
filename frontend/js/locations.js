@@ -1,4 +1,7 @@
 //$(document).foundation()
+$.getJSON("http://ab-kc.tk/view.php",function(result) {
+	console.log(result);
+});
 var testData = {"lot":"lotQ","genID":"1-1","space":2,"isOpen":true}
 var test;
 var map;
