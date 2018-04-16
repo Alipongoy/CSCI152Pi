@@ -4,7 +4,8 @@ import numpy as np
 import cv2
 import sys
 import time
-
+import pdb
+import json
 '''
 pts = np.array([[205,710],[50,750],[265,750],[420,675]],np.int32)
 pts = pts.reshape((-1,1,2))
@@ -18,6 +19,10 @@ cv2.polylines(img3_2,[pts],True,(255,0,0),3)
 #	 Each element in a sublist is [x1,y1,x2,y2] => (x1,y1) (x2,y2) [1170]
 rectangle_lot = [[475,675,610,750],[705,660,910,750],[1000,675,1170,750]]
 
+with open('data.json') as json_data:
+	x = json.load(json_data)
+
+# pdb.set_trace()
 '''The Parking Spaces (not to be confused with the above
    (the above is just to draw the rectangular boxes for visuals)'''
 
@@ -27,8 +32,8 @@ parking_lot = [[680,480,745,605],[665,710,745,905],[680,1005,745,1165]]
 
 
 #Load images
-img1 =cv2.imread("/home/pi/Documents/empty_lot.jpg", cv2.IMREAD_UNCHANGED)
-img2 = cv2.imread("/home/pi/Documents/lot_1car.jpg", cv2.IMREAD_UNCHANGED)
+img1 =cv2.imread("parking_lot_images/empty_lot.jpg", cv2.IMREAD_UNCHANGED)
+img2 = cv2.imread("parking_lot_images/lot_1car.jpg", cv2.IMREAD_UNCHANGED)
 
 #Save image to display the parking lot with rectangles
 img3_2 = img2
@@ -71,6 +76,7 @@ for i in range(len(total)):
 
 #Determine if a spot is taken or not
 for i in range(len(average)):
+	print "This is the average: " + str(average[i])
 	if average[i] ==  0:
         	print (i, " is not taken")
 	else:
