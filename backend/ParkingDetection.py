@@ -7,7 +7,7 @@ import time
 
 class ParkingDetection:
     def __init__(self):
-        pass       
+        def self.meanValue = 0       
 
     def loadImage(self, imageLocation):
         return cv2.imread(imageLocation, cv2.IMREAD_UNCHANGED)
