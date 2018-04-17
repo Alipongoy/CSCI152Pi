@@ -12,7 +12,7 @@ class ParkingSpace:
         self.isSpotTaken = False
 
     def createRectangleOnImage(self, imageToDrawTo):
-        cv2.rectangle(imageToDrawTo,(self.x1,self.y1),(self.x2,self.y2),(255,0,0),3)
+        cv2.rectangle(imageToDrawTo,(self.y1,self.x1),(self.y2,self.x2),(255,0,0),3)
 
     def isSingleSpotTaken(self, greyedImage):
        # TODO:

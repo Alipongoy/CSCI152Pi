@@ -51,15 +51,18 @@ class ParkingDetection:
        image3 = self.getImageDifference(image1, image2)
        greyscaledImage = self._convertImageToGreyscale(image3)
 
-       img3_2 = cv2.resize(image1, (760, 520))
-       cv2.imshow('puta', img3_2)
-       pdb.set_trace()
 
        for parkingSpace in self.parkingSpaceList:
            parkingSpace.createRectangleOnImage(image1)
+           parkingSpace.createRectangleOnImage(greyscaledImage)
 
+       image1 = cv2.resize(image1, (760, 520))
        cv2.imshow('original', image1)
+       x = cv2.resize(greyscaledImage, (760, 520))
+       cv2.imshow('subtraction', cv2.resize(x, (760, 520)))
+
 
 parkingDetection = ParkingDetection()
 parkingDetection.isParkingSpotTaken("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_1car.jpg")
-       
+
+cv2.waitKey(0)

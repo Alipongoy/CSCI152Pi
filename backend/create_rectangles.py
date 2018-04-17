@@ -33,6 +33,10 @@ parking_lot = [[680,480,745,605],[665,710,745,905],[680,1005,745,1165]]
 
 #Load images
 img1 =cv2.imread("parking_lot_images/empty_lot.jpg", cv2.IMREAD_UNCHANGED)
+
+x = cv2.resize(img1, (760, 520))
+cv2.imshow('puta', x)
+
 img2 = cv2.imread("parking_lot_images/lot_1car.jpg", cv2.IMREAD_UNCHANGED)
 
 #Save image to display the parking lot with rectangles
