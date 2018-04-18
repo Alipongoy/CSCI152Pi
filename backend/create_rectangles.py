@@ -64,8 +64,9 @@ at=1
 for space in parking_lot:
 	for i in range(space[0],space[2]):
         	for j in range(space[1],space[3]):
-                	total[total_index] += img3[i,j]
-                        # use this to map out parking lot: img3[i,j] = 1000
+				total[total_index] += img3[i,j]
+				# use this to map out parking lot: img3[i,j] = 1000
+		pdb.set_trace()
 	total_index = total_index + 1
 
 #mean = total / (width * height)
