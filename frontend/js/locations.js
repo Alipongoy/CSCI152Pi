@@ -57,13 +57,13 @@ $.getJSON("http://ab-kc.tk/parking/view.php",function(result) {
         var lat, lng;
         if(spot.space == 1) { //reset the lat and long to default
             lat = parseFloat(lotTemplates[spot.lot][spot.genID].lat);
-            lng = parseFloat(lotTemplates[spot.lot][spot.genID].lng);
+            lng = parseFloat(lotTemplates[spot.lot][spot.genID].lng) - (lngDiff/2);
         } else { //adjust lat or long
             if (spot.space % 2 == 0) {
-                lat+= latDiff;
+                lat-= latDiff;
             } else {
                 lng+= lngDiff;
-                lat-= latDiff;
+                lat+= latDiff;
             }
         }
         //sets the key pair
