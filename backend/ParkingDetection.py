@@ -25,7 +25,7 @@ class ParkingDetection:
             dictionaryList = json.load(json_data)
 
         for dictionaryObject in dictionaryList:
-            parkingSpace = ParkingSpace(dictionaryObject["x1"], dictionaryObject["y1"], dictionaryObject["x2"], dictionaryObject["y2"], dictionaryObject["row"], dictionaryObject["spot"])
+            parkingSpace = ParkingSpace(dictionaryObject["x1"], dictionaryObject["y1"], dictionaryObject["x2"], dictionaryObject["y2"], dictionaryObject["lot"], dictionaryObject["row"], dictionaryObject["spot"])
             returnList.append(parkingSpace)
         
         return returnList
@@ -50,6 +50,7 @@ class ParkingDetection:
 
     def isParkingSpotTaken(self, imageLocation1, imageLocation2):
         image1 = self.loadImage(imageLocation1)
+        imageCopy = self.loadImage(imageLocation1)
         image2 = self.loadImage(imageLocation2)
         image3 = self.getImageDifference(image1, image2)
         greyscaledImage = self._convertImageToGreyscale(image3)
@@ -73,37 +74,42 @@ class ParkingDetection:
         #     newY = int(round((xCoord * slope) + 338))
         #     for yCoord in range(338, newY):
         #         x[yCoord, xCoord] = (255, 255, 0)
-        slope = (float(338-393)/float(355-252))
-        print "This is the slope: " + str(slope)
-        total = 0
-        for xCoord in range(152, 252):
-            total += 1
-            newY = int(round((total * slope))) + 393
-            for yCoord in range(392, newY, -1):
-                x[yCoord, xCoord] = (0, 255, 0)
+        # slope = (float(338-393)/float(355-252))
+        # print "This is the slope: " + str(slope)
+        # total = 0
+        # for xCoord in range(152 + 10, 252 - 10):
+        #     total += 1
+        #     newY = int(round((total * slope))) + 393
+        #     for yCoord in range(392 + 10, newY - 10, -1):
+        #         x[yCoord, xCoord] = (0, 255, 0)
 
-        for xCoord in range(252, 317):
-            for yCoord in range(336, 393):
-                x[yCoord, xCoord] = (0, 255, 0)
+        # for xCoord in range(252 + 10, 317 - 10):
+        #     for yCoord in range(336 + 10, 393 - 10):
+        #         x[yCoord, xCoord] = (0, 255, 0)
 
-        total = 0
-        difference = 335 - 317
-        slope = (float(338-393)/float(355-317))
-        yIntercept = int(393 - (slope * 317))
-        for xCoord in range(317, 355):
-            newY = int(round((xCoord * slope))) + yIntercept
-            for yCoord in range(338, newY, 1):
-                # pdb.set_trace()
-                x[yCoord, xCoord] = (0, 255, 0)
-        cv2.polylines(x,[pts],True,(0,255,255))
+        # total = 0
+        # difference = 335 - 317
+        # slope = (float(338-393)/float(355-317))
+        # yIntercept = int(393 - (slope * 317))
+        # for xCoord in range(317 + 10, 355 - 10):
+        #     newY = int(round((xCoord * slope))) + yIntercept
+        #     for yCoord in range(338 + 10, newY - 10, 1):
+        #         # pdb.set_trace()
+        #         x[yCoord, xCoord] = (0, 255, 0)
+        
+        cv2.polylines(image1,[pts],True,(0,255,255))
+        cv2.fillPoly(image1, [pts], (0, 255, 255))
         cv2.imshow("yee", x)
 
 
         for parkingSpace in self.parkingSpaceList:
-            parkingSpace.isSingleSpotTaken(greyscaledImage, self.sensitivityLightValue)
+            parkingSpace.drawMaskOnImage(imageCopy)
+            parkingSpace.isSingleSpotTaken(greyscaledImage, self.sensitivityLightValue, imageCopy)
 
         z = cv2.resize(greyscaledImage, (720, 540))
         cv2.imshow('greyscaledImage', z)
+        imageCopy = cv2.resize(imageCopy, (720, 540))
+        cv2.imshow('imageCopy', imageCopy)
 
 parkingDetection = ParkingDetection()
 parkingDetection.isParkingSpotTaken("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_2carsright.jpg")
