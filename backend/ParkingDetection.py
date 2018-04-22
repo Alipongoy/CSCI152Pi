@@ -36,82 +36,52 @@ class ParkingDetection:
     def getImageDifference(self, image1, image2):
         return image2 - image1
     
-    def getAverage(self, x1, x2, y1, y2, image3):
-        total = 0
-        for i in range(x1, x2):
-            for j in range(y1, y2):
-                total += image3[i,j]
-
-        average = total / ((x1*x2) + (y1*y2))
-        return average
-    
     def _convertImageToGreyscale(self, img):
         return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    
+    def _resizeImage(self, img):
+        return cv2.resize(img, (720, 540))
 
-    def isParkingSpotTaken(self, imageLocation1, imageLocation2):
+    def isChangeInParking(self, imageLocation1, imageLocation2):
         image1 = self.loadImage(imageLocation1)
-        imageCopy = self.loadImage(imageLocation1)
+        image1Copy = self._resizeImage(image1)
+
+        imageMask = self.loadImage(imageLocation1)
+        imageMask = self._resizeImage(imageMask)
+
         image2 = self.loadImage(imageLocation2)
-        image3 = self.getImageDifference(image1, image2)
-        greyscaledImage = self._convertImageToGreyscale(image3)
+        image2Copy = self._resizeImage(image2)
+        imageDifference = self.getImageDifference(image1, image2)
+        imageDifferenceCopy = self._resizeImage(imageDifference)
+
+        greyscaledImage = self._convertImageToGreyscale(imageDifference)
+        greyscaledImage = self._resizeImage(greyscaledImage)
 
         for parkingSpace in self.parkingSpaceList:
-            parkingSpace.createPolygonOnImage(image1)
-            parkingSpace.createPolygonOnImage(image2)
+            # This draws the polygons on the image.
             parkingSpace.createPolygonOnImage(greyscaledImage)
+            parkingSpace.createPolygonOnImage(image2)
+            # This draws the yellow mask to the images.
+            parkingSpace.drawMaskOnImage(imageMask)
 
-        # Should call is parkingSpot taken in every ParkingSpace element
+        with open('data.json', 'r+') as jsonFile:
+            data = json.load(jsonFile)
+            # This is the main logic for finding if a parking spot has changed
+            for parkingSpace in self.parkingSpaceList:
+                isChangeInParking = parkingSpace.isChangeInParking(greyscaledImage, self.sensitivityLightValue, imageMask)
+                if (isChangeInParking):
+                    data = parkingSpace.updateDataAndIsSpotTaken(data)
+            jsonFile.seek(0)  # rewind
+            json.dump(data, jsonFile)
+            jsonFile.truncate()
 
-        x = cv2.resize(image1, (720, 540))
-        y = cv2.resize(image2, (720, 540))
-        z = cv2.resize(greyscaledImage, (720, 540))
-        # Top left, top right, bottom right, bottom left
-        pts = np.array([[252,336], [355,338], [317,393], [152,393]], np.int32)
-        # I have no idea what is actually happening here
-        pts = pts.reshape((-1,1,2))
-        # Attempts to fill image of polygon into x
-        # for xCoord in range(152, 355):
-        #     newY = int(round((xCoord * slope) + 338))
-        #     for yCoord in range(338, newY):
-        #         x[yCoord, xCoord] = (255, 255, 0)
-        # slope = (float(338-393)/float(355-252))
-        # print "This is the slope: " + str(slope)
-        # total = 0
-        # for xCoord in range(152 + 10, 252 - 10):
-        #     total += 1
-        #     newY = int(round((total * slope))) + 393
-        #     for yCoord in range(392 + 10, newY - 10, -1):
-        #         x[yCoord, xCoord] = (0, 255, 0)
-
-        # for xCoord in range(252 + 10, 317 - 10):
-        #     for yCoord in range(336 + 10, 393 - 10):
-        #         x[yCoord, xCoord] = (0, 255, 0)
-
-        # total = 0
-        # difference = 335 - 317
-        # slope = (float(338-393)/float(355-317))
-        # yIntercept = int(393 - (slope * 317))
-        # for xCoord in range(317 + 10, 355 - 10):
-        #     newY = int(round((xCoord * slope))) + yIntercept
-        #     for yCoord in range(338 + 10, newY - 10, 1):
-        #         # pdb.set_trace()
-        #         x[yCoord, xCoord] = (0, 255, 0)
-        
-        cv2.polylines(image1,[pts],True,(0,255,255))
-        cv2.fillPoly(image1, [pts], (0, 255, 255))
-        cv2.imshow("yee", x)
-
-
-        for parkingSpace in self.parkingSpaceList:
-            parkingSpace.drawMaskOnImage(imageCopy)
-            parkingSpace.isSingleSpotTaken(greyscaledImage, self.sensitivityLightValue, imageCopy)
-
-        z = cv2.resize(greyscaledImage, (720, 540))
-        cv2.imshow('greyscaledImage', z)
-        imageCopy = cv2.resize(imageCopy, (720, 540))
-        cv2.imshow('imageCopy', imageCopy)
+        cv2.imshow("greyscaledImage", greyscaledImage)
+        cv2.imshow("imageMask", imageMask)
+        cv2.imshow("image2Copy", image2Copy)
+        cv2.imshow("image1Copy", image1Copy)
+        cv2.imshow("imageDifferenceCopy", imageDifferenceCopy)
 
 parkingDetection = ParkingDetection()
-parkingDetection.isParkingSpotTaken("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_2carsright.jpg")
+parkingDetection.isChangeInParking("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_2carsright.jpg")
 
 cv2.waitKey(0)
