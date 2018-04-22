@@ -6,19 +6,37 @@ import time
 import pdb
 
 class ParkingSpace:
-    def __init__(self, x1, y1, x2, y2, lot, row, space):
-        self.y1 = y1
-        self.x1 = x1
-        self.y2 = y2
-        self.x2 = x2
-        self.lot = lot
-        self.row = row
-        self.space = space
+    def __init__(self, parkingDictionary):
+        pointCoordinateKeysToCheck = ["topLeft", "topRight", "bottomRight", "bottomLeft"]
+        coordinateKeysToCheck = ["x1", "x2", "y1", "y2"]
+        # This checks if the data.json follows an 8 point system
+        is8Point = all(key in parkingDictionary for key in pointCoordinateKeysToCheck)
+        isCoordinates = all(key in parkingDictionary for key in coordinateKeysToCheck)
+        # If it follows an 8 point coordinate system, then the coordinates get set regularly
+        if (is8Point):
+            self.topLeft = parkingDictionary["topLeft"]
+            self.topRight = parkingDictionary["topRight"]
+            self.bottomRight = parkingDictionary["bottomRight"]
+            self.bottomLeft = parkingDictionary["bottomLeft"]
+        # If not, then the coordinates get set programatically
+        elif (isCoordinates):
+            self.topLeft = (parkingDictionary["x1"], parkingDictionary["y1"])
+            self.topRight = (parkingDictionary["x2"], parkingDictionary["y1"])
+            self.bottomRight = (parkingDictionary["x2"], parkingDictionary["y2"])
+            self.bottomLeft = (parkingDictionary["x1"], parkingDictionary["y2"])
+        else:
+            print "Error, data is not submitted properly."
 
-        self.width = abs(self.x2 - self.x1)
-        self.height = abs(self.y2 - self.y1)
+        self.lot = parkingDictionary["lot"]
+        self.row = parkingDictionary["row"]
+        self.spot = parkingDictionary["spot"]
+
+        self.width = abs(self.topLeft[0] - self.topRight[0])
+        self.height = abs(self.topLeft[1] - self.bottomLeft[1])
 
         self.isSpotTaken = False
+
+        pdb.set_trace()
 
     def createRectangleOnImage(self, imageToDrawTo, color=None):
         if color is None:

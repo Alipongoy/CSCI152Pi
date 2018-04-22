@@ -25,7 +25,7 @@ class ParkingDetection:
             dictionaryList = json.load(json_data)
 
         for dictionaryObject in dictionaryList:
-            parkingSpace = ParkingSpace(dictionaryObject["x1"], dictionaryObject["y1"], dictionaryObject["x2"], dictionaryObject["y2"], dictionaryObject["lot"], dictionaryObject["row"], dictionaryObject["spot"])
+            parkingSpace = ParkingSpace(dictionaryObject)
             returnList.append(parkingSpace)
         
         return returnList
