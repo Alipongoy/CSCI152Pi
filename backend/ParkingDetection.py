@@ -56,9 +56,9 @@ class ParkingDetection:
         greyscaledImage = self._convertImageToGreyscale(image3)
 
         for parkingSpace in self.parkingSpaceList:
-            parkingSpace.createRectangleOnImage(image1)
-            parkingSpace.createRectangleOnImage(image2)
-            parkingSpace.createRectangleOnImage(greyscaledImage)
+            parkingSpace.createPolygonOnImage(image1)
+            parkingSpace.createPolygonOnImage(image2)
+            parkingSpace.createPolygonOnImage(greyscaledImage)
 
         # Should call is parkingSpot taken in every ParkingSpace element
 

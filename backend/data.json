@@ -1,12 +1,21 @@
 [
   {
-    "x1": 475,
-    "y1": 675,
-    "x2": 610,
-    "y2": 750,
+    "topLeft": [252, 336],
+    "topRight": [355, 338],
+    "bottomRight": [317,393],
+    "bottomLeft": [152,393],
     "lot": 1,
     "row": 1,
-    "spot": 1
+    "spot": 0
+  },
+  {
+    "topLeft": [292, 187],
+    "topRight": [482, 166],
+    "bottomRight": [488, 244],
+    "bottomLeft": [280, 268],
+    "lot": 1,
+    "row": 1,
+    "spot": 0
   },
   {
     "x1": 475,
