@@ -8,18 +8,18 @@
             147, 
             393
         ], 
-        "isSpotTaken": false, 
+        "isOpen": false, 
         "bottomRight": [
             317, 
             392
         ], 
-        "spot": 0, 
+        "space": 0, 
         "topRight": [
             355, 
             336
         ], 
         "lot": 1, 
-        "row": 1
+        "genID": 1
     }, 
     {
         "topLeft": [
@@ -30,18 +30,18 @@
             327, 
             394
         ], 
-        "isSpotTaken": true, 
+        "isOpen": true, 
         "bottomRight": [
             502, 
             396
         ], 
-        "spot": 1, 
+        "space": 1, 
         "topRight": [
             468, 
             337
         ], 
         "lot": 1, 
-        "row": 1
+        "genID": 1
     }, 
     {
         "topLeft": [
@@ -52,18 +52,17 @@
             511, 
             395
         ], 
-        "isSpotTaken": true, 
+        "isOpen": true, 
         "bottomRight": [
             703, 
             398
         ], 
-        "spot": 2, 
+        "space": 2, 
         "topRight": [
             586, 
             335
         ], 
         "lot": 1, 
-        "row": 1
+        "genID": 1
     }
-]
 ]

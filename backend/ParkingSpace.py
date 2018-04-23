@@ -28,8 +28,8 @@ class ParkingSpace:
             print "Error, data is not submitted properly."
 
         self.lot = parkingDictionary["lot"]
-        self.row = parkingDictionary["row"]
-        self.spot = parkingDictionary["spot"]
+        self.genID = parkingDictionary["genID"]
+        self.space = parkingDictionary["space"]
 
         self.width = abs(self.topLeft[0] - self.topRight[0])
         self.height = abs(self.topLeft[1] - self.bottomLeft[1])
@@ -37,7 +37,7 @@ class ParkingSpace:
         self.ptsArray = np.array([[self.topLeft[0],self.topLeft[1]], [self.topRight[0],self.topRight[1]], [self.bottomRight[0],self.bottomRight[1]], [self.bottomLeft[0],self.bottomLeft[1]]], np.int32)
         self.ptsArray = self.ptsArray.reshape((-1,1,2))
 
-        self.isSpotTaken = parkingDictionary["isSpotTaken"]
+        self.isOpen = parkingDictionary["isOpen"]
     
     def createPolygonOnImage(self, imageToDrawTo, color=None):
         if color is None:
@@ -72,14 +72,14 @@ class ParkingSpace:
     
     def updateDataAndIsSpotTaken(self,data):
         for singleData in data:
-            if (singleData["lot"] == self.lot and singleData["row"] == self.row and singleData["spot"] == self.spot):
+            if (singleData["lot"] == self.lot and singleData["genID"] == self.genID and singleData["space"] == self.space):
                 # This toggles the isSpotTaken
-                if singleData["isSpotTaken"] == False:
-                    singleData["isSpotTaken"] = True
-                    self.isSpotTaken = True
+                if singleData["isOpen"] == False:
+                    singleData["isOpen"] = True
+                    self.isOpen = True
                 else:
-                    singleData["isSpotTaken"] = False
-                    self.isSpotTaken = False
+                    singleData["isOpen"] = False
+                    self.isOpen = False
                 #updates the data
                 # TODO:
                 # insert singleData into data
