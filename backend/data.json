@@ -23,6 +23,28 @@
     }, 
     {
         "topLeft": [
+            229, 
+            124
+        ], 
+        "bottomLeft": [
+            284, 
+            264
+        ], 
+        "isOpen": false, 
+        "bottomRight": [
+            598, 
+            264
+        ], 
+        "space": 0, 
+        "topRight": [
+            534, 
+            124
+        ], 
+        "lot": 1, 
+        "genID": 1
+    }, 
+    {
+        "topLeft": [
             363, 
             338
         ], 
