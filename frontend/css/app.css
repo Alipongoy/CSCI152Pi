@@ -5,11 +5,18 @@
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
-	height: 90vh;
+	position: relative;
+	height: 100vh;
 	margin: 0;
 	padding: 0;
 }
 .title {
-	height: 10vh;
+	position: absolute;
+	z-index: 5;
+	top: 10px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	background-color: #fff;
+	border: 1px solid #999;
 	font-size: 7vh;
 }
