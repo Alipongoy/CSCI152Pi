@@ -72,8 +72,8 @@ class ParkingDetection:
                 if (isChangeInParking):
                     data = parkingSpace.updateDataAndIsSpotTaken(data)
             jsonFile.seek(0)  # rewind
-            json.dump(data, jsonFile)
-            jsonFile.truncate()
+            json.dump(data, jsonFile, indent=4)
+            # jsonFile.truncate()
 
         cv2.imshow("greyscaledImage", greyscaledImage)
         cv2.imshow("imageMask", imageMask)
