@@ -10,18 +10,18 @@ import pdb
 
 class ParkingDetection:
     def __init__(self):
-        self.meanValue = 0
         self.parkingSpaceList = self._generateParkingSpaceList()
         self._sensitivity = 0.50
         # This determines how sensitive the parking spot detections are
         self.sensitivityLightValue = int(round(self._sensitivity * 255))
+        self.dataToRead = 'data.json'
     
     def _generateParkingSpaceList(self):
         dictionaryList = []
         returnList = []
         
         # Change the data.json to appropriate file to read
-        with open('data.json') as json_data:
+        with open(self.dataToRead) as json_data:
             dictionaryList = json.load(json_data)
 
         for dictionaryObject in dictionaryList:
@@ -64,7 +64,7 @@ class ParkingDetection:
             # This draws the yellow mask to the images.
             parkingSpace.drawMaskOnImage(imageMask)
 
-        with open('data.json', 'r+') as jsonFile:
+        with open(self.dataToRead, 'r+') as jsonFile:
             data = json.load(jsonFile)
             # This is the main logic for finding if a parking spot has changed
             for parkingSpace in self.parkingSpaceList:
