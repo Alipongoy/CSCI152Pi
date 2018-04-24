@@ -43,7 +43,7 @@ class ParkingDetection:
     def _resizeImage(self, img):
         return cv2.resize(img, (720, 540))
 
-    def isChangeInParking(self, imageLocation1, imageLocation2):
+    def checkParking(self, imageLocation1, imageLocation2):
         image1 = self.loadImage(imageLocation1)
         image1Copy = self._resizeImage(image1)
 
@@ -70,20 +70,15 @@ class ParkingDetection:
             data = json.load(jsonFile)
             # This is the main logic for finding if a parking spot has changed
             for parkingSpace in self.parkingSpaceList:
-                isChangeInParking = parkingSpace.isChangeInParking(greyscaledImage, self.sensitivityLightValue, imageMask)
-                if (isChangeInParking):
-                    data = parkingSpace.updateDataAndIsSpotTaken(data)
+                parkingSpace.setParkingTaken(greyscaledImage, self.sensitivityLightValue, imageMask)
+                data = parkingSpace.updateData(data)
             jsonFile.seek(0)  # rewind
             json.dump(data, jsonFile, indent=4)
             jsonFile.truncate()
 
         cv2.imshow("greyscaledImage", greyscaledImage)
-        cv2.imshow("imageMask", imageMask)
-        cv2.imshow("image2Copy", image2Copy)
-        cv2.imshow("image1Copy", image1Copy)
-        cv2.imshow("imageDifferenceCopy", imageDifferenceCopy)
 
 parkingDetection = ParkingDetection()
-parkingDetection.isChangeInParking("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_2carsright.jpg")
+parkingDetection.checkParking("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_2carsright.jpg")
 
 cv2.waitKey(0)
