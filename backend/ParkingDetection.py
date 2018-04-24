@@ -1,6 +1,7 @@
 from PIL import Image
 from time import sleep
 from ParkingSpace import ParkingSpace
+from matplotlib import pyplot as plt
 import numpy as np
 import cv2
 import sys
@@ -10,11 +11,11 @@ import pdb
 
 class ParkingDetection:
     def __init__(self):
-        self.parkingSpaceList = self._generateParkingSpaceList()
-        self._sensitivity = 0.50
+        # self._sensitivity = 0.50
         # This determines how sensitive the parking spot detections are
-        self.sensitivityLightValue = int(round(self._sensitivity * 255))
+        self.sensitivityLightValue = 60
         self.dataToRead = 'data.json'
+        self.parkingSpaceList = self._generateParkingSpaceList()
     
     def _generateParkingSpaceList(self):
         dictionaryList = []
@@ -54,7 +55,8 @@ class ParkingDetection:
         imageDifference = self.getImageDifference(image1, image2)
         imageDifferenceCopy = self._resizeImage(imageDifference)
 
-        greyscaledImage = self._convertImageToGreyscale(imageDifference)
+        # greyscaledImage = self._convertImageToGreyscale(imageDifference)
+        greyscaledImage = cv2.Canny(image2Copy, 0, 300, 3)
         greyscaledImage = self._resizeImage(greyscaledImage)
 
         for parkingSpace in self.parkingSpaceList:

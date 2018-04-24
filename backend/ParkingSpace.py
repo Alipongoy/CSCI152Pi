@@ -93,6 +93,8 @@ class ParkingSpace:
         self.fillPolygonOnImage(greyedImage, polygonAverage)
 
         if (sensitivityLightValue < polygonAverage):
+            print "This is lot: ", str(self.lot)
+            print "This is space: ", str(self.space)
             print "This spot has changed."
             return True
         else:
