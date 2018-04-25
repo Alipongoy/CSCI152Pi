@@ -1,5 +1,8 @@
 from PIL import Image
+#from picamera import PiCamera
 from time import sleep
+#for time stamp
+#from time import sleep, gmtime, strftime
 from ParkingSpace import ParkingSpace
 import numpy as np
 import cv2
@@ -48,6 +51,15 @@ class ParkingDetection:
 
         imageMask = self.loadImage(imageLocation1)
         imageMask = self._resizeImage(imageMask)
+	
+	#For while loop indent till bottom at sleep(3)
+	'''while True:
+		#camera = PiCamera()
+		camera.start_preview(fullscreen=False, window=(100,20,640,480))
+		sleep(2)
+        	camera.capture(imageLocation2)
+		#camera.close()
+        	camera.stop_preview()'''
 
         image2 = self.loadImage(imageLocation2)
         image2Copy = self._resizeImage(image2)
@@ -81,7 +93,15 @@ class ParkingDetection:
         cv2.imshow("image1Copy", image1Copy)
         cv2.imshow("imageDifferenceCopy", imageDifferenceCopy)
 
+	#time stamp
+        print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+        print "\n"
+	#sleep(3)
+
 parkingDetection = ParkingDetection()
+#camera = PiCamera()
+'''Last param should be final location that should not currently exist since it will
+ be overwritten by camera capture()'''
 parkingDetection.isChangeInParking("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_2carsright.jpg")
 
 cv2.waitKey(0)
