@@ -1,6 +1,5 @@
-from PIL import Image
 from ParkingSpace import ParkingSpace
-from matplotlib import pyplot as plt
+from PIL import Image
 import numpy as np
 import cv2
 import json
@@ -49,6 +48,15 @@ class ParkingDetection:
 
         imageMask = self.loadImage(imageLocation1)
         imageMask = self._resizeImage(imageMask)
+	
+	#For while loop indent till bottom at sleep(3)
+	'''while True:
+		#camera = PiCamera()
+		camera.start_preview(fullscreen=False, window=(100,20,640,480))
+		sleep(2)
+        	camera.capture(imageLocation2)
+		#camera.close()
+        	camera.stop_preview()'''
 
         edgeImage = cv2.Canny(image1, 0, 400, 3)
         edgeImage = self._resizeImage(edgeImage)
@@ -80,6 +88,11 @@ class ParkingDetection:
 
         # This displays the image 
         cv2.imshow("edgeImage", edgeImage)
+
+	#time stamp
+        print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+        print "\n"
+	#sleep(3)
 
 parkingDetection = ParkingDetection()
 parkingDetection.checkParking("./parking_lot_images/lot_3cars.jpg")
