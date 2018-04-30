@@ -14,5 +14,5 @@ def main():
             parkingDetection.checkParking(fullImagePath)
 
     except KeyboardInterrupt:
-        print "Keyboard was pressed."
+        print "Program will now quit."
         return
