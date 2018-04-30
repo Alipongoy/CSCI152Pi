@@ -94,7 +94,3 @@ class ParkingDetection:
         print "\n"
 	#sleep(3)
 
-parkingDetection = ParkingDetection()
-parkingDetection.checkParking("./parking_lot_images/lot_3cars.jpg")
-
-cv2.waitKey(0)
