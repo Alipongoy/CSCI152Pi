@@ -1,9 +1,5 @@
-from time import sleep
 import numpy as np
 import cv2
-import sys
-import time
-import pdb
 
 class ParkingSpace:
     def __init__(self, parkingDictionary):

@@ -2,43 +2,21 @@
     {
         "topLeft": [
             252, 
-            337
+            339
         ], 
         "bottomLeft": [
-            147, 
+            149, 
+            391
+        ], 
+        "isOpen": true, 
+        "bottomRight": [
+            315, 
             393
         ], 
-        "isOpen": false, 
-        "bottomRight": [
-            317, 
-            392
-        ], 
         "space": 0, 
         "topRight": [
-            355, 
-            336
-        ], 
-        "lot": 1, 
-        "genID": 1
-    }, 
-    {
-        "topLeft": [
-            229, 
-            124
-        ], 
-        "bottomLeft": [
-            284, 
-            264
-        ], 
-        "isOpen": false, 
-        "bottomRight": [
-            598, 
-            264
-        ], 
-        "space": 0, 
-        "topRight": [
-            534, 
-            124
+            335, 
+            338
         ], 
         "lot": 1, 
         "genID": 1
@@ -46,18 +24,18 @@
     {
         "topLeft": [
             363, 
-            338
+            337
         ], 
         "bottomLeft": [
-            327, 
-            394
+            326, 
+            392
         ], 
         "isOpen": true, 
         "bottomRight": [
-            502, 
+            500, 
             396
         ], 
-        "space": 1, 
+        "space": 2, 
         "topRight": [
             468, 
             337
@@ -67,22 +45,44 @@
     }, 
     {
         "topLeft": [
-            475, 
-            337
+            476, 
+            339
         ], 
         "bottomLeft": [
-            511, 
-            395
+            501, 
+            373
         ], 
         "isOpen": true, 
         "bottomRight": [
-            703, 
-            398
+            650, 
+            367
         ], 
         "space": 2, 
         "topRight": [
-            586, 
-            335
+            584, 
+            336
+        ], 
+        "lot": 1, 
+        "genID": 1
+    }, 
+    {
+        "topLeft": [
+            151, 
+            337
+        ], 
+        "bottomLeft": [
+            40, 
+            373
+        ], 
+        "isOpen": true, 
+        "bottomRight": [
+            160, 
+            382
+        ], 
+        "space": 2, 
+        "topRight": [
+            247, 
+            337
         ], 
         "lot": 1, 
         "genID": 1
