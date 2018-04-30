@@ -21,11 +21,11 @@ class Camera:
         self.camera.start_preview(fullscreen=False, window=(100,20,640,480))
         self._warmUp(3)
 
-        imageLocation = self.__locationToSaveTo + imageName
-        self.camera.capture(imageLocation)
+        fullImagePath = self.__locationToSaveTo + imageName
+        self.camera.capture(fullImagePath)
 
-        print "File is saved to:" + imageLocation
+        print "File is saved to:" + fullImagePath
 
         self.camera.stop_preview()
 
-x = Camera()
+        return fullImagePath
