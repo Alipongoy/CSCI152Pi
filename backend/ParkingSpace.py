@@ -1,9 +1,5 @@
-from time import sleep
 import numpy as np
 import cv2
-import sys
-import time
-import pdb
 
 class ParkingSpace:
     def __init__(self, parkingDictionary):
@@ -70,31 +66,28 @@ class ParkingSpace:
         
         return totalLightValue / yellowPixel
     
-    def updateDataAndIsSpotTaken(self,data):
+    def updateData(self,data):
         for singleData in data:
             if (singleData["lot"] == self.lot and singleData["genID"] == self.genID and singleData["space"] == self.space):
                 # This toggles the isSpotTaken
-                if singleData["isOpen"] == False:
+                if self.isOpen == True:
                     singleData["isOpen"] = True
-                    self.isOpen = True
                 else:
                     singleData["isOpen"] = False
-                    self.isOpen = False
-                #updates the data
-                # TODO:
-                # insert singleData into data
                 index = data.index(singleData)
                 data[index] = singleData
         return data
 
-    def isChangeInParking(self, greyedImage, sensitivityLightValue, imageMask):
+    def setParkingTaken(self, greyedImage, sensitivityLightValue, imageMask):
         polygonAverage = self.getPolygonAverage(greyedImage, imageMask)
         print "This is the polygonAverage: ", polygonAverage
         self.fillPolygonOnImage(greyedImage, polygonAverage)
 
         if (sensitivityLightValue < polygonAverage):
-            print "This spot has changed."
-            return True
+            print "This is lot: ", str(self.lot)
+            print "This is space: ", str(self.space)
+            print "This spot is taken."
+            self.isOpen = True
         else:
-            print "This spot hasn't changed."
-            return False
+            print "This spot isn't taken."
+            self.isOpen = False

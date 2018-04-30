@@ -1,27 +1,24 @@
-from PIL import Image
-from time import sleep
 from ParkingSpace import ParkingSpace
+from PIL import Image
 import numpy as np
 import cv2
-import sys
-import time
 import json
 import pdb
 
 class ParkingDetection:
     def __init__(self):
-        self.meanValue = 0
-        self.parkingSpaceList = self._generateParkingSpaceList()
-        self._sensitivity = 0.50
+        # self._sensitivity = 0.50
         # This determines how sensitive the parking spot detections are
-        self.sensitivityLightValue = int(round(self._sensitivity * 255))
+        self.sensitivityLightValue = 50
+        self.dataToRead = 'data.json'
+        self.parkingSpaceList = self._generateParkingSpaceList()
     
     def _generateParkingSpaceList(self):
         dictionaryList = []
         returnList = []
         
         # Change the data.json to appropriate file to read
-        with open('data.json') as json_data:
+        with open(self.dataToRead) as json_data:
             dictionaryList = json.load(json_data)
 
         for dictionaryObject in dictionaryList:
@@ -42,46 +39,58 @@ class ParkingDetection:
     def _resizeImage(self, img):
         return cv2.resize(img, (720, 540))
 
-    def isChangeInParking(self, imageLocation1, imageLocation2):
+    def checkParking(self, imageLocation1):
         image1 = self.loadImage(imageLocation1)
-        image1Copy = self._resizeImage(image1)
+        image1Resized = self._resizeImage(image1)
+
+        imageTest = self.loadImage("./parking_lot_images/empty_lot.jpg")
+        imageTest = self._resizeImage(imageTest)
 
         imageMask = self.loadImage(imageLocation1)
         imageMask = self._resizeImage(imageMask)
+	
+	#For while loop indent till bottom at sleep(3)
+	'''while True:
+		#camera = PiCamera()
+		camera.start_preview(fullscreen=False, window=(100,20,640,480))
+		sleep(2)
+        	camera.capture(imageLocation2)
+		#camera.close()
+        	camera.stop_preview()'''
 
-        image2 = self.loadImage(imageLocation2)
-        image2Copy = self._resizeImage(image2)
-        imageDifference = self.getImageDifference(image1, image2)
-        imageDifferenceCopy = self._resizeImage(imageDifference)
+        edgeImage = cv2.Canny(image1, 0, 400, 3)
+        edgeImage = self._resizeImage(edgeImage)
 
-        greyscaledImage = self._convertImageToGreyscale(imageDifference)
-        greyscaledImage = self._resizeImage(greyscaledImage)
+        # These are the thresholds of what white values to capture
+        lowerWhite = np.array([80, 80, 80])
+        higherWhite = np.array([255, 255, 255])
+
+        zzz = cv2.inRange(image1Resized, lowerWhite, higherWhite)
+
+        zzzz = cv2.bitwise_and(edgeImage, edgeImage, mask=zzz)
 
         for parkingSpace in self.parkingSpaceList:
             # This draws the polygons on the image.
-            parkingSpace.createPolygonOnImage(greyscaledImage)
-            parkingSpace.createPolygonOnImage(image2)
+            parkingSpace.createPolygonOnImage(edgeImage)
+            parkingSpace.createPolygonOnImage(image1)
             # This draws the yellow mask to the images.
             parkingSpace.drawMaskOnImage(imageMask)
 
-        with open('data.json', 'r+') as jsonFile:
+        with open(self.dataToRead, 'r+') as jsonFile:
             data = json.load(jsonFile)
             # This is the main logic for finding if a parking spot has changed
             for parkingSpace in self.parkingSpaceList:
-                isChangeInParking = parkingSpace.isChangeInParking(greyscaledImage, self.sensitivityLightValue, imageMask)
-                if (isChangeInParking):
-                    data = parkingSpace.updateDataAndIsSpotTaken(data)
+                parkingSpace.setParkingTaken(edgeImage, self.sensitivityLightValue, imageMask)
+                data = parkingSpace.updateData(data)
             jsonFile.seek(0)  # rewind
             json.dump(data, jsonFile, indent=4)
             jsonFile.truncate()
 
-        cv2.imshow("greyscaledImage", greyscaledImage)
-        cv2.imshow("imageMask", imageMask)
-        cv2.imshow("image2Copy", image2Copy)
-        cv2.imshow("image1Copy", image1Copy)
-        cv2.imshow("imageDifferenceCopy", imageDifferenceCopy)
+        # This displays the image 
+        cv2.imshow("edgeImage", edgeImage)
 
-parkingDetection = ParkingDetection()
-parkingDetection.isChangeInParking("./parking_lot_images/empty_lot.jpg", "./parking_lot_images/lot_2carsright.jpg")
+	#time stamp
+        print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+        print "\n"
+	#sleep(3)
 
-cv2.waitKey(0)
