@@ -7,18 +7,19 @@ var lotQ = {"1-1":{"lat":"36.817893","lng":"-119.751360","spaces":14}};
 lotQ["1-2"] = {"lat":"36.817889","lng":"-119.750819","spaces":33};
 lotQ["2-1"] = {"lat":"36.817721","lng":"-119.751361","spaces":14};
 lotQ["2-2"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
-lotQ["3-1"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
-lotQ["3-2"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
-lotQ["4-1"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
-lotQ["4-2"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
-lotQ["5-1"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
-lotQ["5-2"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
+lotQ["3-1"] = {"lat":"36.817569","lng":"-119.751365","spaces":14};
+lotQ["3-2"] = {"lat":"36.817567","lng":"-119.750821","spaces":33};
+lotQ["4-1"] = {"lat":"36.817393","lng":"-119.751366","spaces":14};
+lotQ["4-2"] = {"lat":"36.817400","lng":"-119.750823","spaces":33};
+lotQ["5-1"] = {"lat":"36.817232","lng":"-119.751367","spaces":14};
+lotQ["5-2"] = {"lat":"36.817231","lng":"-119.750822","spaces":33};
     //fill to 5-2 for testing 
 ;
 var lotTemplates = {"lotQ":lotQ}; 
 
 
 //-----not in use anymore-----//
+/*
 var exampleData = {"lot":"lotQ","genID":"1-1","space":2,"isOpen":true,"timeStamp":"somedate"}
 function loadLots () {
 	var tempLot = []; 
@@ -41,6 +42,7 @@ function loadLots () {
 	//overwrite the framework lot with the full lot
 	lotQ = tempLot;
 }
+*/
 //loadLots();
 
 
