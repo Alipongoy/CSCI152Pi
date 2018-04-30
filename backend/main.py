@@ -9,6 +9,8 @@ def main():
             camera = Camera()
             parkingDetection = ParkingDetection()
 
+            camera.openCamera()
+
             nameOfImage = "mainImage.jpg"
             fullImagePath = camera.takePicture(nameOfImage)
 

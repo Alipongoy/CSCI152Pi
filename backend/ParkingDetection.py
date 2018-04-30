@@ -65,10 +65,6 @@ class ParkingDetection:
         lowerWhite = np.array([80, 80, 80])
         higherWhite = np.array([255, 255, 255])
 
-        zzz = cv2.inRange(image1Resized, lowerWhite, higherWhite)
-
-        zzzz = cv2.bitwise_and(edgeImage, edgeImage, mask=zzz)
-
         for parkingSpace in self.parkingSpaceList:
             # This draws the polygons on the image.
             parkingSpace.createPolygonOnImage(edgeImage)

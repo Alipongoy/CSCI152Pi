@@ -16,6 +16,14 @@ class Camera:
     def setSaveLocation(self, locationToSaveTo):
         self.__locationToSaveTo = locationToSaveTo
 
+    def openCamera(self):
+        try:
+            self.camera.start_preview(fullscreen=False, window=(100,20,640,480))
+
+        except KeyboardInterrupt:
+            print "Camera will now close."
+            self.camera.stop_preview()
+
     def takePicture(self, imageName):
         pdb.set_trace()
         self.camera.start_preview(fullscreen=False, window=(100,20,640,480))
