@@ -12,7 +12,7 @@ function initMap() {
     // create an array of markers based on a given "locations" array.
     // The map() method here has nothing to do with the Google Maps API.
     var image = {
-        url: 'img/blue-marker.png',
+        url: 'img/blue-maker.png',
         //size: new google.maps.Size(20, 32),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 32)
@@ -22,12 +22,11 @@ function initMap() {
         var point = points[i];
         var marker =  new google.maps.Marker({
             position: new google.maps.LatLng(point.lat, point.lng),
-            title: point.title,
+            title: point.name,
             html: point.description,
             //animation: google.maps.Animation.DROP,
-            //icon: image,
-            title: point.name,
-            label: point.id //change to number of availible parking spots
+            icon: image,
+            label: {text:point.name, color: "white"} //change to number of availible parking spots
         });
         google.maps.event.addListener(marker, 'click', function(){
             //add changing the zoom into the spaces

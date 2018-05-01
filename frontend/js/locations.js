@@ -1,18 +1,18 @@
 //difference between lattitudes of spaces
-var lngDiff = 0.00003;
-var latDiff = 0.000056;
+var lngDiff = 0.0000295;
+var latDiff = 0.00005;
 //id:for readability, lat and lng for lat and long, 
 //spaces is the number of spaces in the row
-var lotQ = {"1-1":{"lat":"36.817893","lng":"-119.751360","spaces":14}};
-lotQ["1-2"] = {"lat":"36.817889","lng":"-119.750819","spaces":33};
-lotQ["2-1"] = {"lat":"36.817721","lng":"-119.751361","spaces":14};
-lotQ["2-2"] = {"lat":"36.817719","lng":"-119.750818","spaces":33};
-lotQ["3-1"] = {"lat":"36.817569","lng":"-119.751365","spaces":14};
-lotQ["3-2"] = {"lat":"36.817567","lng":"-119.750821","spaces":33};
-lotQ["4-1"] = {"lat":"36.817393","lng":"-119.751366","spaces":14};
-lotQ["4-2"] = {"lat":"36.817400","lng":"-119.750823","spaces":33};
-lotQ["5-1"] = {"lat":"36.817232","lng":"-119.751367","spaces":14};
-lotQ["5-2"] = {"lat":"36.817231","lng":"-119.750822","spaces":33};
+var lotQ = {"1-1":{"lat":"36.817885","lng":"-119.751358","spaces":14}};
+lotQ["1-2"] = {"lat":"36.817885","lng":"-119.750836","spaces":33};
+lotQ["2-1"] = {"lat":"36.817717","lng":"-119.751358","spaces":14};
+lotQ["2-2"] = {"lat":"36.817710","lng":"-119.750818","spaces":33};
+lotQ["3-1"] = {"lat":"36.817550","lng":"-119.751359","spaces":14};
+lotQ["3-2"] = {"lat":"36.817545","lng":"-119.750815","spaces":33};
+lotQ["4-1"] = {"lat":"36.817380","lng":"-119.751360","spaces":14};
+lotQ["4-2"] = {"lat":"36.817370","lng":"-119.750810","spaces":33};
+lotQ["5-1"] = {"lat":"36.817210","lng":"-119.751367","spaces":14};
+lotQ["5-2"] = {"lat":"36.817210","lng":"-119.750815","spaces":33};
     //fill to 5-2 for testing 
 ;
 var lotTemplates = {"lotQ":lotQ}; 
@@ -99,7 +99,7 @@ function viewLot(lot) {
 				position: new google.maps.LatLng(space.lat, space.lng),
 				icon: parkicon,
                 visible: !!+space.isOpen, // "!!+" converts string to bool 
-				label: spot,
+				label: {text:spot, color: "white"}
             });
             markers.push(marker);
         }
