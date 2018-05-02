@@ -1,15 +1,18 @@
 from Camera import Camera
-from time import sleep 
+from time import sleep
 from ParkingDetection import ParkingDetection
 import cv2
 
 def main():
-    try: 
-        while True:
-            camera = Camera()
-            parkingDetection = ParkingDetection()
+    try:
+        camera = Camera()
+        parkingDetection = ParkingDetection()
 
-            nameOfImage = "mainImage.jpg"
+        camera.openCamera()
+        nameOfImage = "mainImage.jpg"
+
+        while True:
+
             fullImagePath = camera.takePicture(nameOfImage)
 
             parkingDetection.checkParking(fullImagePath)
@@ -18,3 +21,5 @@ def main():
     except KeyboardInterrupt:
         print "Program will now quit."
         return
+
+main()

@@ -16,9 +16,19 @@ class Camera:
     def setSaveLocation(self, locationToSaveTo):
         self.__locationToSaveTo = locationToSaveTo
 
-    def takePicture(self, imageName):
-        pdb.set_trace()
+    def openCamera(self):
         self.camera.start_preview(fullscreen=False, window=(100,20,640,480))
+
+        try:
+            while True:
+                pass
+
+        except KeyboardInterrupt:
+            print "Camera will now close."
+            self.camera.stop_preview()
+
+    def takePicture(self, imageName):
+        self.camera.start_preview()
         self._warmUp(3)
 
         fullImagePath = self.__locationToSaveTo + imageName
