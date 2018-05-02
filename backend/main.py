@@ -20,3 +20,5 @@ def main():
     except KeyboardInterrupt:
         print "Program will now quit."
         return
+
+main()
