@@ -12,11 +12,11 @@ class ParkingDetection:
         self.sensitivityLightValue = 50
         self.dataToRead = 'data.json'
         self.parkingSpaceList = self._generateParkingSpaceList()
-    
+
     def _generateParkingSpaceList(self):
         dictionaryList = []
         returnList = []
-        
+
         # Change the data.json to appropriate file to read
         with open(self.dataToRead) as json_data:
             dictionaryList = json.load(json_data)
@@ -24,18 +24,18 @@ class ParkingDetection:
         for dictionaryObject in dictionaryList:
             parkingSpace = ParkingSpace(dictionaryObject)
             returnList.append(parkingSpace)
-        
+
         return returnList
 
     def loadImage(self, imageLocation):
         return cv2.imread(imageLocation, cv2.IMREAD_UNCHANGED)
-    
+
     def getImageDifference(self, image1, image2):
         return image2 - image1
-    
+
     def _convertImageToGreyscale(self, img):
         return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
+
     def _resizeImage(self, img):
         return cv2.resize(img, (720, 540))
 
@@ -43,12 +43,9 @@ class ParkingDetection:
         image1 = self.loadImage(imageLocation1)
         image1Resized = self._resizeImage(image1)
 
-        imageTest = self.loadImage("./parking_lot_images/empty_lot.jpg")
-        imageTest = self._resizeImage(imageTest)
-
         imageMask = self.loadImage(imageLocation1)
         imageMask = self._resizeImage(imageMask)
-	
+
 	#For while loop indent till bottom at sleep(3)
 	'''while True:
 		#camera = PiCamera()
@@ -82,11 +79,11 @@ class ParkingDetection:
             json.dump(data, jsonFile, indent=4)
             jsonFile.truncate()
 
-        # This displays the image 
+        # This displays the image
         cv2.imshow("edgeImage", edgeImage)
 
 	#time stamp
-        print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
-        print "\n"
+        #print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+        #print "\n"
 	#sleep(3)
 

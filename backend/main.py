@@ -1,17 +1,18 @@
 from Camera import Camera
-from time import sleep 
+from time import sleep
 from ParkingDetection import ParkingDetection
 import cv2
 
 def main():
-    try: 
+    try:
+        camera = Camera()
+        parkingDetection = ParkingDetection()
+
+        camera.openCamera()
+        nameOfImage = "mainImage.jpg"
+
         while True:
-            camera = Camera()
-            parkingDetection = ParkingDetection()
 
-            camera.openCamera()
-
-            nameOfImage = "mainImage.jpg"
             fullImagePath = camera.takePicture(nameOfImage)
 
             parkingDetection.checkParking(fullImagePath)
