@@ -4,6 +4,7 @@ from ParkingDetection import ParkingDetection
 import cv2
 import urllib2, urllib
 import json
+import pdb
 
 
 def pushToBackEnd(pathToPushTo):
@@ -38,4 +39,7 @@ def main():
         print "Program will now quit."
         return
 
-main()
+#main()
+parkingDetection = ParkingDetection()
+parkingDetection.checkParking("parking_lot_images/lot_3cars.jpg")
+pushToBackEnd("http://ab-kc.tk/parking/push.php")
