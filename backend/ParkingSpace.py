@@ -154,13 +154,13 @@ class ParkingSpace:
         Parameters
         ----------
         
-        data: dict
-            This is a dictionary that should contain a single dictionary from the data.json file
+        data: [dict]
+            This is an array of dictionary elements that get updated
 
         Returns
         -------
-        data: dict
-            The function will return the same dictionary, only now with 'isOpen' changed.
+        data: [dict]
+            The function will return the same array of dictionaries, only now with 'isOpen' changed.
         """
         for singleData in data:
             if (singleData["lot"] == self.lot and singleData["genID"] == self.genID and singleData["space"] == self.space):
