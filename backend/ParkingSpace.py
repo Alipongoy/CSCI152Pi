@@ -3,6 +3,22 @@ import cv2
 
 class ParkingSpace:
     def __init__(self, parkingDictionary):
+        """ This is a constructor function for a ParkingSpace class.
+
+        Parameters
+        ----------
+        parkingDictionary : dict
+            This is a dictionary which should contain the following keys:
+            {
+                topLeft: [x_coordinate, y_coordinate],
+                topRight: [x_coordinate, y_coordinate],
+                bottomLeft: [x_coordinate, y_coordinate],
+                bottomRight: [x_coordinate, y_coordinate],
+
+            }
+        
+        """
+
         pointCoordinateKeysToCheck = ["topLeft", "topRight", "bottomRight", "bottomLeft"]
         coordinateKeysToCheck = ["x1", "x2", "y1", "y2"]
         # This checks if the data.json follows an 8 point system

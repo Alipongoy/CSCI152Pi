@@ -31,6 +31,7 @@ def main():
 
             parkingDetection.checkParking(fullImagePath)
             pushToBackEnd("http://ab-kc.tk/parking/push.php")
+            # Remove bottom code in production 
             cv2.waitKey(0)
 
     except KeyboardInterrupt:
