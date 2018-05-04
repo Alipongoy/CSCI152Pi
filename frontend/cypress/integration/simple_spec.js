@@ -23,6 +23,7 @@ describe('Visit', function() {
 describe('Check spots in lotQ', function() {
     it('Clicks on LotQ to see if the spaces render', function() {
         cy.visit('localhost:8000')
+        cy.get('.title')
 
         cy.get('[title="LotQ"] > img').click()
         cy.contains('470').click()
