@@ -1,3 +1,4 @@
+sys.path.insert(0, './lib')
 import unittest
 from ParkingDetection import ParkingDetection
 import json
@@ -12,7 +13,7 @@ class TestParkingDetection(unittest.TestCase):
     def test_GenerateParkingSpaceList(self):
         #list = park._generateParkingSpaceList()
         testList = []
-        with open('data.json') as inputFile:
+        with open('./data.json') as inputFile:
             testData = json.load(inputFile)
         
         testList = park._generateParkingSpaceList
@@ -38,11 +39,11 @@ class TestParkingDetection(unittest.TestCase):
         for pix in imageDiff[0][0]:
             self.assertEqual(pix, 0)
 
-# formula used by OpenCV: 0.299*R+0.587*G+0.114*B
-def test_ConvertImageToGreyscales(self):
-    colorImg = cv2.imread('./parking_lot_images/empty_lot.jpg', cv2.IMREAD_UNCHANGED)
-    greyImg = park._convertImageToGreyscale(colorImg)
-    index = 0
+    # formula used by OpenCV: 0.299*R+0.587*G+0.114*B
+    def test_ConvertImageToGreyscales(self):
+        colorImg = cv2.imread('./parking_lot_images/empty_lot.jpg', cv2.IMREAD_UNCHANGED)
+        greyImg = park._convertImageToGreyscale(colorImg)
+        index = 0
         #testColor = colorImg[0][0]
         #print len(testImage1[0])
         for i in range(len(colorImg[0])):
@@ -51,13 +52,13 @@ def test_ConvertImageToGreyscales(self):
             colorResult = int(round(colorResult))
             self.assertEqual(greyImg[0][i], colorResult)
 
-# test if resize works check agains parameters specified cv2 resize function (default 720, 540)
-def test_resizeImage(self):
-    image = park.loadImage('./parking_lot_images/empty_lot.jpg')
-    resizedImg = park._resizeImage(image)
-    self.assertEqual(len(resizedImg), 540)
+    # test if resize works check agains parameters specified cv2 resize function (default 720, 540)
+    def test_resizeImage(self):
+        image = park.loadImage('./parking_lot_images/empty_lot.jpg')
+        resizedImg = park._resizeImage(image)
+        self.assertEqual(len(resizedImg), 540)
     
-    '''Black-box test cases end'''
+        '''Black-box test cases end'''
 
 
 if __name__ == '__main__':
