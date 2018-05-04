@@ -94,7 +94,7 @@ function viewLot(lot) {
         //needs to be an array, or just feed individually?
         for (var spot in lots[lot]) {
             var space = lots[lot][spot];
-            console.log(space.isOpen);
+            //console.log(space.isOpen);
             var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(space.lat, space.lng),
 				icon: parkicon,

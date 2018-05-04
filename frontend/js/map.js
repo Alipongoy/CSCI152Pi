@@ -26,7 +26,8 @@ function initMap() {
             html: point.description,
             //animation: google.maps.Animation.DROP,
             icon: image,
-            label: {text:point.name, color: "white"} //change to number of availible parking spots
+            label: {text:point.name, color: "white"}, //change to number of availible parking spots
+            clickable: true
         });
         google.maps.event.addListener(marker, 'click', function(){
             //add changing the zoom into the spaces
