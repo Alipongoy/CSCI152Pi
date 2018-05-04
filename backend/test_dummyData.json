@@ -1,0 +1,90 @@
+[
+    {
+        "topLeft": [
+            252, 
+            339
+        ], 
+        "bottomLeft": [
+            149, 
+            391
+        ], 
+        "isOpen": true, 
+        "bottomRight": [
+            315, 
+            393
+        ], 
+        "space": 0, 
+        "topRight": [
+            335, 
+            338
+        ], 
+        "lot": 1, 
+        "genID": 1
+    }, 
+    {
+        "topLeft": [
+            363, 
+            337
+        ], 
+        "bottomLeft": [
+            326, 
+            392
+        ], 
+        "isOpen": true, 
+        "bottomRight": [
+            500, 
+            396
+        ], 
+        "space": 2, 
+        "topRight": [
+            468, 
+            337
+        ], 
+        "lot": 1, 
+        "genID": 1
+    }, 
+    {
+        "topLeft": [
+            476, 
+            339
+        ], 
+        "bottomLeft": [
+            501, 
+            373
+        ], 
+        "isOpen": true, 
+        "bottomRight": [
+            650, 
+            367
+        ], 
+        "space": 2, 
+        "topRight": [
+            584, 
+            336
+        ], 
+        "lot": 1, 
+        "genID": 2
+    }, 
+    {
+        "topLeft": [
+            151, 
+            337
+        ], 
+        "bottomLeft": [
+            40, 
+            373
+        ], 
+        "isOpen": true, 
+        "bottomRight": [
+            160, 
+            382
+        ], 
+        "space": 0, 
+        "topRight": [
+            247, 
+            337
+        ], 
+        "lot": 42, 
+        "genID": 23
+    }
+]
