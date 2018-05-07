@@ -1,90 +1,90 @@
 [
     {
         "topLeft": [
-            252, 
-            339
+            444, 
+            81
         ], 
         "bottomLeft": [
-            149, 
-            391
+            432, 
+            189
         ], 
-        "isOpen": false, 
+        "isOpen": true, 
         "bottomRight": [
-            315, 
-            393
+            502, 
+            194
         ], 
-        "space": 0, 
+        "space": 1, 
         "topRight": [
-            335, 
-            338
+            507, 
+            83
         ], 
         "lot": 1, 
         "genID": 1
     }, 
     {
         "topLeft": [
-            363, 
-            337
+            429, 
+            203
         ], 
         "bottomLeft": [
-            326, 
-            392
+            405, 
+            365
         ], 
         "isOpen": false, 
         "bottomRight": [
-            500, 
-            396
+            491, 
+            377
         ], 
         "space": 2, 
         "topRight": [
-            468, 
-            337
+            502, 
+            209
         ], 
         "lot": 1, 
         "genID": 1
     }, 
     {
         "topLeft": [
-            476, 
-            339
+            519, 
+            210
         ], 
         "bottomLeft": [
-            501, 
-            373
+            515, 
+            381
         ], 
         "isOpen": true, 
         "bottomRight": [
-            650, 
-            367
+            613, 
+            389
         ], 
-        "space": 2, 
+        "space": 3, 
         "topRight": [
-            584, 
-            336
+            597, 
+            215
         ], 
         "lot": 1, 
-        "genID": 2
+        "genID": 1
     }, 
     {
         "topLeft": [
-            151, 
-            337
+            603, 
+            93
         ], 
         "bottomLeft": [
-            40, 
-            373
+            616, 
+            202
         ], 
         "isOpen": true, 
         "bottomRight": [
-            160, 
-            382
+            695, 
+            200
         ], 
-        "space": 0, 
+        "space": 4, 
         "topRight": [
-            247, 
-            337
+            678, 
+            100
         ], 
-        "lot": 42, 
-        "genID": 23
+        "lot": 1, 
+        "genID": 1
     }
 ]
