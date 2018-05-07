@@ -133,9 +133,6 @@ class ParkingDetection:
         edgeImage = cv2.Canny(image1, 0, 400, 3)
         edgeImage = self._resizeImage(edgeImage)
 
-        sImage = cv2.Canny(image1, 0, 400, 3)
-        sImage = self._resizeImage(sImage)
-
         # These are the thresholds of what white values to capture
         lowerWhite = np.array([80, 80, 80])
         higherWhite = np.array([255, 255, 255])
@@ -159,5 +156,3 @@ class ParkingDetection:
 
         # This displays the image. Remove in production.
         cv2.imshow("edgeImage", edgeImage)
-        cv2.imshow("sImage", sImage)
-        cv2.imshow("image1Resized", image1Resized)
