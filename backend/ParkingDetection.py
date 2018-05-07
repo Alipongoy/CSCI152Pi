@@ -164,5 +164,5 @@ class ParkingDetection:
         cv2.imshow("sampleEdge", sampleEdge)
 
 x = ParkingDetection()
-x.checkParking("parking_lot_images/mainImage.jpg")
+x.checkParking("parking_lot_images/Yeezy.jpg")
 cv2.waitKey(0)

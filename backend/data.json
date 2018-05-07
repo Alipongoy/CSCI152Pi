@@ -1,88 +1,88 @@
 [
     {
         "topLeft": [
-            444, 
-            81
+            155, 
+            111
         ], 
         "bottomLeft": [
-            432, 
-            189
+            91, 
+            332
         ], 
         "isOpen": true, 
         "bottomRight": [
-            502, 
-            194
+            210, 
+            332
         ], 
         "space": 1, 
         "topRight": [
-            507, 
-            83
+            247, 
+            119
         ], 
         "lot": 1, 
         "genID": 1
     }, 
     {
         "topLeft": [
-            429, 
-            203
+            497, 
+            149
         ], 
         "bottomLeft": [
-            405, 
-            365
+            530, 
+            347
         ], 
         "isOpen": false, 
         "bottomRight": [
-            491, 
-            377
+            649, 
+            352
         ], 
         "space": 2, 
         "topRight": [
-            502, 
-            209
+            597, 
+            155
         ], 
         "lot": 1, 
         "genID": 1
     }, 
     {
         "topLeft": [
-            519, 
-            210
+            386, 
+            3
         ], 
         "bottomLeft": [
-            515, 
-            381
+            389, 
+            90
         ], 
-        "isOpen": true, 
+        "isOpen": false, 
         "bottomRight": [
-            613, 
-            389
+            463, 
+            102
         ], 
         "space": 3, 
         "topRight": [
-            597, 
-            215
+            458, 
+            4
         ], 
         "lot": 1, 
         "genID": 1
     }, 
     {
         "topLeft": [
-            603, 
-            93
+            576, 
+            4
         ], 
         "bottomLeft": [
-            616, 
-            202
+            607, 
+            118
         ], 
         "isOpen": true, 
         "bottomRight": [
-            695, 
-            200
+            699, 
+            120
         ], 
         "space": 4, 
         "topRight": [
-            678, 
-            100
+            657, 
+            8
         ], 
         "lot": 1, 
         "genID": 1
