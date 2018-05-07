@@ -1,5 +1,6 @@
 from ParkingSpace import ParkingSpace
 from PIL import Image
+import time
 import numpy as np
 import cv2
 import json
@@ -42,7 +43,7 @@ class ParkingDetection:
             returnList.append(parkingSpace)
 
         return returnList
-
+ 
     def loadImage(self, imageLocation):
         """ Loads an image.
         
@@ -155,9 +156,3 @@ class ParkingDetection:
 
         # This displays the image. Remove in production.
         cv2.imshow("edgeImage", edgeImage)
-
-	#time stamp
-        #print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
-        #print "\n"
-	#sleep(3)
-
