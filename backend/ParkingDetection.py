@@ -19,7 +19,7 @@ class ParkingDetection:
         self.parkingSpaceList = [ParkingSpace objects]
             A list of parking space objects
         """
-        self.sensitivityLightValue = 50
+        self.sensitivityLightValue = 30
         self.dataToRead = 'data.json'
         self.parkingSpaceList = self._generateParkingSpaceList()
 
@@ -157,8 +157,12 @@ class ParkingDetection:
             json.dump(data, jsonFile, indent=4)
             jsonFile.truncate()
 
-        # This displays the image. Remove in production.
+        # This displays the igmage. Remove in production.
         cv2.imshow("image1Resized", image1Resized)
         cv2.imshow("imageMask", imageMask)
         cv2.imshow("edgeImage", edgeImage)
         cv2.imshow("sampleEdge", sampleEdge)
+
+x = ParkingDetection()
+x.checkParking("parking_lot_images/mainImage.jpg")
+cv2.waitKey(0)

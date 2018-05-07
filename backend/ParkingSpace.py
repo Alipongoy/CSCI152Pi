@@ -192,9 +192,10 @@ class ParkingSpace:
         print "This is the polygonAverage: ", polygonAverage
         self.fillPolygonOnImage(edgeImage, polygonAverage)
 
+        print "This is lot: ", str(self.lot)
+        print "This is space: ", str(self.space)
+
         if (sensitivityLightValue < polygonAverage):
-            print "This is lot: ", str(self.lot)
-            print "This is space: ", str(self.space)
             print "This spot is taken."
             self.isOpen = True
         else:
