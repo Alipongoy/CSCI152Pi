@@ -25,17 +25,17 @@ def main():
         camera = Camera()
         parkingDetection = ParkingDetection()
 
-        camera.openCamera()
+        #camera.openCamera()
         nameOfImage = "mainImage.jpg"
 
-        while True:
-            fullImagePath = camera.takePicture(nameOfImage)
-            parkingDetection.checkParking(fullImagePath)
-            pushToBackEnd("http://ab-kc.tk/parking/push.php")
-            # This ensures that its not taking pictures every cycle
-            time.sleep(30)
-            # Remove bottom code in production
-            # cv2.waitKey(0)
+        #while True:
+        fullImagePath = camera.takePicture(nameOfImage)
+        parkingDetection.checkParking(fullImagePath)
+        pushToBackEnd("http://ab-kc.tk/parking/push.php")
+        # This ensures that its not taking pictures every cycle
+        sleep(2)
+        # Remove bottom code in production
+        cv2.waitKey(0)
 
     except KeyboardInterrupt:
         print "Program will now quit."

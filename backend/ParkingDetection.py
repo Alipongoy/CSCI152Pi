@@ -29,7 +29,7 @@ class ParkingDetection:
         Returns
         -------
         [ParkingSpace]
-            Returns a list of ParkingSpace objects. 
+            Returns a list of ParkingSpace objects.
         """
         dictionaryList = []
         returnList = []
@@ -43,15 +43,15 @@ class ParkingDetection:
             returnList.append(parkingSpace)
 
         return returnList
- 
+
     def loadImage(self, imageLocation):
         """ Loads an image.
-        
+
         Parameters
         ----------
         imageLocation: str
             A string location of the image to load.
-        
+
         Returns
         -------
         numpy.ndarray
@@ -61,14 +61,14 @@ class ParkingDetection:
 
     def getImageDifference(self, image1, image2):
         """ Returns the subtraction of image2 and image1. Not being used.
-        
+
         Parameters
         ----------
         image1: numpy.ndarray
             A string location of the image to load.
         image2: numpy.ndarray
             A string location of the image to load.
-        
+
         Returns
         -------
         numpy.ndarray
@@ -118,11 +118,11 @@ class ParkingDetection:
         Step 5: The average light value for each parking spot is determined by the mask.
         Step 6: Sets the property of parkingSpace.isOpen based on if the average light value is brighter than the threshold value
 
-        Parameters 
-        ---------- 
+        Parameters
+        ----------
         imageLocation1: str
             A string of the image location.
-        
+
         """
         image1 = self.loadImage(imageLocation1)
         image1Resized = self._resizeImage(image1)
@@ -132,6 +132,9 @@ class ParkingDetection:
 
         edgeImage = cv2.Canny(image1, 0, 400, 3)
         edgeImage = self._resizeImage(edgeImage)
+
+        sampleEdge = cv2.Canny(image1, 0, 400, 3)
+        sampleEdge = self._resizeImage(sampleEdge)
 
         # These are the thresholds of what white values to capture
         lowerWhite = np.array([80, 80, 80])
@@ -155,4 +158,7 @@ class ParkingDetection:
             jsonFile.truncate()
 
         # This displays the image. Remove in production.
+        cv2.imshow("image1Resized", image1Resized)
+        cv2.imshow("imageMask", imageMask)
         cv2.imshow("edgeImage", edgeImage)
+        cv2.imshow("sampleEdge", sampleEdge)
