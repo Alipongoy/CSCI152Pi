@@ -25,12 +25,12 @@ def main():
         camera = Camera()
         parkingDetection = ParkingDetection()
 
-        #camera.openCamera()
-        nameOfImage = "mainImage.jpg"
+        camera.openCamera()
+        nameOfImage = "Yeezy.jpg"
 
         #while True:
         fullImagePath = camera.takePicture(nameOfImage)
-        parkingDetection.checkParking(fullImagePath)
+        #parkingDetection.checkParking(fullImagePath)
         pushToBackEnd("http://ab-kc.tk/parking/push.php")
         # This ensures that its not taking pictures every cycle
         sleep(2)
