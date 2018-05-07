@@ -1,0 +1,92 @@
+<html class="whatinput-types-initial whatinput-types-mouse" lang="en" dir="ltr" data-whatinput="mouse" data-whatintent="mouse">
+	<head> 
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Fresno State Parking</title>
+		<link rel ="stylesheet" href ="css/search.css">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+		<meta class="foundation-mq">
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script type="text/javascript">
+			$(window).on('scroll', function() {
+				if($(window).scrollTop()){
+					$('nav').addClass('black');
+				}
+				else
+				{
+					$('nav').removeClass('black');
+				}
+			})
+		</script>
+	</head>
+	<body> 
+		<section>
+			<!-- parallax background code -->
+			<div class="pimg">
+			<!-- header code -->
+			<div class ="wrapper">
+				<nav>
+					<div class ="logo">Fresno State Parking</div>
+					<div class ="menu">
+						<ul>
+							<li><a class ="active" href="index.html">Map</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Help</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+				<div class ="ptext">
+						<!-- search bar code -->
+					<form action="index.html">
+						<div class ="search-box">
+							<input class ="search-txt" type="text" name ="" placeholder="Type to search" list="datalist-buildings" required>
+							<datalist id="datalist-buildings">
+								<option value="Henry Madden Library">
+								<option value="Grosse Industrial Technology">
+								<option value="Peters Business">
+								<option value="University Student Union">
+								<option value="Speech Arts">
+								<option value="Agricultural Sciences">
+								<option value="Agriculture Operations Center">
+								<option value="Bulldog Stadium">
+								<option value="Conley Art">
+								<option value="Downing Planetarium">
+								<option value="Engineering East">
+								<option value="Engineering West">
+								<option value="Family and Food Science">
+								<option value="Joyal Administration">
+								<option value="McKee Fisk">
+								<option value="McLane Hall">
+								<option value="Music">
+								<option value="North Gym">
+								<option value="Satellite Student Union">
+								<option value="Save Mart Center">
+								<option value="Science">
+								<option value="Science II">
+								<option value="Social Science">
+								<option value="South Gym">
+							</datalist>
+							<a class ="search-btn "href="index.html">
+								<i class ="fas fa-search"></i>
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+		<footer>
+			<div id="footer_container">
+				<p class="copyright_text">&copy; copyright 2018</p>
+				<ul class="footer-links">
+					<li><a href="index.html">Map</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

@@ -1,0 +1,177 @@
+body{
+	height: 100%;
+	margin: 0;
+	font-size: 16px;
+	font-family: "Lato", sans-serif;
+	font-weight: 800;
+	line-height: 1.8em;
+	color: #666;
+}
+
+section nav{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	padding: 10px 100px;
+	box-sizing: border-box;
+	transition: 0.3s;
+}
+
+section nav.black{
+	background: rgba(0,0,0,0.8);
+	height: 100px;
+	padding: 10px 100px;
+}
+
+section nav .logo{
+	padding: 22px 20px;
+	height: 80px;
+	float: left;
+	font-size: 36px;
+	transition: 0.3s;
+	color: black;
+}
+
+section nav.black .logo{
+	color: #fff;
+}
+
+section nav ul{
+	list-style: none;
+	float: right;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+section nav ul li {
+	list-style: none;
+}
+
+section nav ul li a{
+	line-height: 80px;
+	color: black;
+	padding: 12px 30px;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: 0.3s;
+}
+
+section nav.black ul li a{
+	color: #fff;
+}
+
+section nav ul li a:focus {
+	outline: none;
+}
+
+section nav ul li a.active{
+	background: blue;
+	color: #fff;
+	border-radius: 6px;
+}
+
+section nav ul li a:hover{
+	color: red;
+}
+
+.pimg{
+	background-image: url('../img/fresnostate.jpeg');
+	min-height:100%;
+	position: relative;
+	opacity:0.8;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.search-box{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background: black;
+	height: 40px;
+	border-radius: 40px;
+	padding: 10px;
+}
+
+.search-box:hover > .search-txt{
+	width: 600px;
+	padding: 0 6px;
+}
+
+.search-box:hover > .search-btn{
+	background: white;
+}
+
+.search-btn{
+	color: red;
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-txt{
+	border: none;
+	background: none;
+	outline: none;
+	float: left;
+	padding: 0;
+	color: white;
+	font-size: 16px;
+	transition: 0.4s;
+	line-height: 40px;
+	width: 0px;
+}
+
+/*----------footer{-----------*/
+
+footer{
+	width: 100%;
+	background-color: #151515;
+}
+
+#footer_container{
+	max-width: 940px;
+	height: 100px;
+	margin: 0 auto;
+	padding-top: 2%;
+}
+
+.footer-links{
+	list-style: none;	
+}
+
+.footer-links li a{
+	font-family: lato;
+	font-size: 24px;
+	display: inline;
+	float: right;
+	padding: 10px;
+	color: #a3a3a3;
+	text-decoration: none;
+	transition: 0.5s;
+}
+
+.footer-links li a:hover{
+	color: red;
+}
+
+.copyright_text{
+	font-weight: 400;
+	padding-top: 2%;
+	float: left;
+	line-height: 0.1em;
+	text-transform: uppercase;
+	font-size: 0.65em;
+	color: #a3a3a3;
+}

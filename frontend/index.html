@@ -5,13 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Fresno State Parking</title>
 		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/search.css">
 		<meta class="foundation-mq">
 	</head>
-	<body>
-		<div class="title" hidden>
-			<div>Parking at Fresno State</div>
-		</div>
-
+	<body>	
+		<input id= "inputs" class= "controls search-term" type= "text" placeholder= "Search for a Building">
+		
 		<div id="map"></div>
 
 		<script src="js/jquerymin.js"></script>
@@ -20,7 +19,19 @@
 		<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 		</script>
 		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTfNu4onhIRukGP3zOKcVEU5uHIfH0JuY&callback=initMap">
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTfNu4onhIRukGP3zOKcVEU5uHIfH0JuY&libraries=places&callback=initMap">
 		</script>
+		
+		<footer>
+			<div id="footer_container">
+				<p class="copyright_text">&copy; copyright 2018</p>
+				<ul class="footer-links">
+					<li><a href="landing.html">Home</a></li>
+					<li><a href="index.html">Map</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+			</div>
+		</footer>
 	</body>
 </html>
