@@ -15,19 +15,26 @@ describe('Visit', function() {
         cy.contains('LotG')
         cy.contains('LotE')
         cy.contains('LotC')
-        cy.contains('LotY')
-
     })
 })
 
 describe('Check spots in lotQ', function() {
     it('Clicks on LotQ to see if the spaces render', function() {
         cy.visit('localhost:8000')
-        cy.get('.title')
 
         cy.get('[title="LotQ"] > img').click()
         cy.contains('470').click()
         cy.contains('12').click()
         cy.contains('1-1-12')
+    })
+})
+
+describe('Test Search', function() {
+    it('Go to the search landing page and run a search', function() {
+        cy.visit('localhost:8000')
+
+        cy.contains('Home').click()
+        cy.contains('Map').click()
+        cy.get('#inputs').type('Grosse Industrial Tech{downarrow}\n')
     })
 })
