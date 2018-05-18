@@ -1,9 +1,12 @@
-# from Camera import Camera
-from time import sleep
+# Classes created
+from Camera import Camera
 from ParkingDetection import ParkingDetection
+# Other libraries needed
+from time import sleep
 import cv2
 import urllib2, urllib
 import json
+import pdb
 
 
 def pushToBackEnd(pathToPushTo):
@@ -23,15 +26,16 @@ def main():
         parkingDetection = ParkingDetection()
 
         camera.openCamera()
-        nameOfImage = "mainImage.jpg"
+        nameOfImage = "Yeezy.jpg"
 
-        while True:
-
-            fullImagePath = camera.takePicture(nameOfImage)
-
-            parkingDetection.checkParking(fullImagePath)
-            pushToBackEnd("http://ab-kc.tk/parking/push.php")
-            cv2.waitKey(0)
+        #while True:
+        fullImagePath = camera.takePicture(nameOfImage)
+        #parkingDetection.checkParking(fullImagePath)
+        pushToBackEnd("http://ab-kc.tk/parking/push.php")
+        # This ensures that its not taking pictures every cycle
+        sleep(2)
+        # Remove bottom code in production
+        cv2.waitKey(0)
 
     except KeyboardInterrupt:
         print "Program will now quit."
