@@ -1,8 +1,3 @@
-describe('My First Test', function() {
-    it('Does not do much!', function() {
-        expect(true).to.equal(true)
-    })
-})
 describe('Visit', function() {
     it('Goes to map page, and checks if properly loading', function() {
         cy.visit('localhost:8000')
@@ -34,6 +29,8 @@ describe('Test Search', function() {
         cy.visit('localhost:8000')
 
         cy.contains('Home').click()
+        cy.url().should('include', '/landing.html')
+
         cy.contains('Map').click()
         cy.get('#inputs').type('Grosse Industrial Tech{downarrow}\n')
     })
